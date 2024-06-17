@@ -1,0 +1,35 @@
+[
+    {
+        "type": "text",
+        "placeholder": "Nombre",
+        "name": "name",
+        "required": true
+    },
+    {
+        "type": "text",
+        "placeholder": "Apellidos",
+        "name": "last_name",
+        "required": true
+    },
+    {
+        "type": "email",
+        "placeholder": "Correo electrónico",
+        "name": "email",
+        "verify": true,
+        "required": true
+    },
+    {
+        "type": "password",
+        "placeholder": "Contraseña",
+        "name": "password",
+        "verify": true,
+        "required": true
+    },
+    {
+        "type": "password",
+        "placeholder": "Confirmar contraseña",
+        "name": "repeat_password",
+        "required": true,
+        "verify": true
+    }
+]

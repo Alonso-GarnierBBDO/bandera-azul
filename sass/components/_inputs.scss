@@ -1,0 +1,405 @@
+form {
+
+    display: grid;
+    grid-gap: rem(10px);
+    margin-top: rem(20px);
+    justify-items: flex-start;
+    width: 100%;
+
+    div {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+
+        label {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+
+            input{
+                width: 100%;
+                padding: rem(15px) rem(15px);
+                border-style: solid;
+                border-width: 1px;
+                border-color: $text_color;
+                border-radius: rem(10px);
+                outline: none;
+                font-size: rem(16px);
+                font-family: $font_text;
+                transition: .2s ease;
+
+                @include bp(mobileMedium){
+                    font-size: rem(16.5px);
+                }
+    
+                @include bp(mobileBIG){
+                    font-size: rem(17px);
+                }
+    
+                @include bp(tablet){
+                    font-size: rem(17.5px);
+                }
+    
+                @include bp(tabletMD){
+                    font-size: rem(18px);
+                }
+    
+                @include bp(laptop){
+                    font-size: rem(18.5px);
+                }
+    
+                @include bp(laptopBIG){
+                    font-size: rem(19px);
+                }
+    
+                @include bp(escritorio){
+                    font-size: rem(19.5px);
+                }
+
+                &:focus,
+                &:not(:placeholder-shown){
+                    border-width: 2px;
+                    border-color: $action_color;
+                }
+
+                &:disabled{
+                    opacity: 0.5;
+                }
+            }
+
+            input[type="password"]{
+                padding: rem(15px) rem(35px) rem(15px) rem(15px);
+            }
+
+            input:not(:placeholder-shown) ~ button.show,
+            input:focus ~ button.show{
+                opacity: 1;
+                pointer-events: initial;
+                user-select: initial;
+            }
+
+            input:disabled ~ button.show{
+                opacity: 0;
+                pointer-events: none;
+                user-select: none;
+            }
+
+            input:not(:placeholder-shown) ~ span.placeholder,
+            input:focus ~ span.placeholder{
+                background-color: $background_color;
+                top: -15%;
+                height: 30%;
+                font-size: rem(14px);
+                color: $action_color;
+
+                @include bp(mobileMedium){
+                    font-size: rem(14.5px);
+                }
+    
+                @include bp(mobileBIG){
+                    font-size: rem(15px);
+                }
+    
+                @include bp(tablet){
+                    font-size: rem(15.5px);
+                }
+    
+                @include bp(tabletMD){
+                    font-size: rem(16px);
+                }
+    
+                @include bp(laptop){
+                    font-size: rem(16.5px);
+                }
+    
+                @include bp(laptopBIG){
+                    font-size: rem(17px);
+                }
+    
+                @include bp(escritorio){
+                    font-size: rem(17.5px);
+                }
+
+            }
+
+            input:disabled ~  span.placeholder{
+                opacity: 1;
+            }
+
+            span.placeholder{
+                background-color: transparent;
+                position: absolute;
+                height: 100%;
+                left: rem(15px);
+                display: grid;
+                place-items: center;
+                top: 0px;
+                font-family: $font_text;
+                font-size: rem(16px);
+                transition: .2s ease;
+                font-weight: 500;
+                color: $text_color;
+                pointer-events: none;
+                user-select: none;
+
+                @include bp(mobileMedium){
+                    font-size: rem(16.5px);
+                }
+    
+                @include bp(mobileBIG){
+                    font-size: rem(17px);
+                }
+    
+                @include bp(tablet){
+                    font-size: rem(17.5px);
+                }
+    
+                @include bp(tabletMD){
+                    font-size: rem(18px);
+                }
+    
+                @include bp(laptop){
+                    font-size: rem(18.5px);
+                }
+    
+                @include bp(laptopBIG){
+                    font-size: rem(19px);
+                }
+    
+                @include bp(escritorio){
+                    font-size: rem(19.5px);
+                }
+            }
+
+            .show {
+                position: absolute;
+                background-color: transparent;
+                right: 10px;
+                padding: 0;
+                border-radius: 0;
+                height: calc(100% - 20px);
+                border-radius: 50%;
+                opacity: 0;
+                pointer-events: none;
+                user-select: none;
+
+                .icon.static{
+                    color: $text_color;
+                }
+
+                &:hover{
+                    .icon{
+                        transform: translateX(0px);
+                    }
+                }
+            }
+        }
+
+        .error{ 
+            margin-top: rem(5px);
+            font-family: $font_text;
+            color: $error_color;
+            margin-left: rem(15px);
+        }
+
+        .password_state {
+            margin-top: rem(5px);
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+            column-gap: 10px;
+            margin-left: rem(15px);
+            width: calc(100% - rem(15px));
+            
+            .indicator {
+                height: rem(7px);
+                width: 100%;
+                border: 1px solid $text_color;
+                border-radius: 10px;
+                position: relative;
+
+                .percentage {
+                    position: absolute;
+                    width: 0%;
+                    left: 0px;
+                    height: 100%;
+                    border: none;
+                    border-radius: 10px;
+                    transition: .2s ease;
+                    background-color: transparent;
+                }
+
+                .percentage.strong{
+                    background-color: $successfull_color;
+                }
+    
+                .percentage.medium{
+                    background-color: $warning_color;
+                }
+    
+                .percentage.weak{
+                    background-color: $error_color;
+                }
+            }
+
+            p{
+                font-family: $font_text;
+            }
+
+            p.strong{
+                color: $successfull_color;
+            }
+
+            p.medium{
+                color: $warning_color;
+            }
+
+            p.weak{
+                color: $error_color;
+            }
+        }
+    }
+
+    button {
+        background-color: $text_color;
+        color: $background_color;
+        border: none;
+        padding: rem(10px) rem(20px);
+        border-radius: rem(10px);
+        cursor: pointer;
+        font-family: $font_text;
+        font-size: rem(14px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: rem(5px);
+        transition: .2s ease;
+        transform: scale(1);
+
+        &:disabled{
+            opacity: 0.7;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        @include bp(mobileMedium){
+            font-size: rem(14.5px);
+            padding: rem(12px) rem(22px);
+        }
+
+        @include bp(mobileBIG){
+            font-size: rem(15px);
+            padding: rem(13px) rem(23px);
+        }
+
+        @include bp(tablet){
+            font-size: rem(15.5px);
+        }
+
+        @include bp(tabletMD){
+            font-size: rem(16px);
+        }
+
+        @include bp(laptop){
+            font-size: rem(16.5px);
+        }
+
+        @include bp(laptopBIG){
+            font-size: rem(17px);
+        }
+
+        @include bp(escritorio){
+            font-size: rem(17.5px);
+        }
+
+        &:hover{
+            background-color: $action_color;
+            color: $text_color;
+        }
+
+        &:active{
+            transform: scale(0.95);
+        }
+
+
+        div.spinner {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            border-radius: 10px;
+          }
+          
+          div.spinner div {
+            width: 6%;
+            height: 30%;
+            background: #FFF;
+            position: absolute;
+            left: 49%;
+            top: 43%;
+            opacity: 0;
+            border-radius: 50px;
+            box-shadow: 0 0 3px rgba(0,0,0,0.2);
+            animation: fade 1s linear infinite;
+            margin-left: 10px;
+          }
+          
+          @keyframes fade {
+            from {opacity: 1;}
+            to {opacity: 0.25;}
+          }
+          
+          div.spinner div.bar1 {
+            transform:rotate(0deg) translate(0, -130%);
+            animation-delay: 0s;
+          }    
+          
+          div.spinner div.bar2 {
+            transform:rotate(30deg) translate(0, -130%); 
+            animation-delay: -0.9167s;
+          }
+          
+          div.spinner div.bar3 {
+            transform:rotate(60deg) translate(0, -130%); 
+            animation-delay: -0.833s;
+          }
+          div.spinner div.bar4 {
+            transform:rotate(90deg) translate(0, -130%); 
+            animation-delay: -0.7497s;
+          }
+          div.spinner div.bar5 {
+            transform:rotate(120deg) translate(0, -130%); 
+            animation-delay: -0.667s;
+          }
+          div.spinner div.bar6 {
+            transform:rotate(150deg) translate(0, -130%); 
+            animation-delay: -0.5837s;
+          }
+          div.spinner div.bar7 {
+            transform:rotate(180deg) translate(0, -130%); 
+            animation-delay: -0.5s;
+          }
+          div.spinner div.bar8 {
+            transform:rotate(210deg) translate(0, -130%); 
+            animation-delay: -0.4167s;
+          }
+          div.spinner div.bar9 {
+            transform:rotate(240deg) translate(0, -130%); 
+            animation-delay: -0.333s;
+          }
+          div.spinner div.bar10 {
+            transform:rotate(270deg) translate(0, -130%); 
+            animation-delay: -0.2497s;
+          }
+          div.spinner div.bar11 {
+            transform:rotate(300deg) translate(0, -130%); 
+            animation-delay: -0.167s;
+          }
+          div.spinner div.bar12 {
+            transform:rotate(330deg) translate(0, -130%); 
+            animation-delay: -0.0833s;
+          }
+    }
+}

@@ -1,0 +1,17 @@
+[
+
+    {
+        "type": "email",
+        "placeholder": "Correo electrónico",
+        "name": "email",
+        "verify": false,
+        "required": true
+    },
+    {
+        "type": "password",
+        "placeholder": "Contraseña",
+        "name": "password",
+        "verify": false,
+        "required": true
+    }
+]

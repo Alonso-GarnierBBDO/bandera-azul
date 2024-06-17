@@ -1,0 +1,91 @@
+.sign-in{
+    main {
+        max-width: 450px;
+        margin: auto;
+
+        @include bp(mobileBIG){
+            max-width: 500px;
+        }
+
+        @include bp(tablet){
+            max-width: 550px;
+        }
+
+        @include bp(tabletMD){
+            max-width: 600px;
+        }
+
+        @include bp(laptopBIG){
+            max-width: 650px;
+        }
+
+        h1 {
+            font-family: $font_title;
+            font-size: rem(35px);
+
+            @include bp(mobileBIG){
+                font-size: rem(40px);
+            }
+
+            @include bp(tablet){
+                font-size: rem(43px);
+            }
+
+            @include bp(tabletMD){
+                font-size: rem(43px);
+            }
+
+            @include bp(laptop){
+                font-size: rem(44px);
+            }
+
+            @include bp(laptopBIG){
+                font-size: rem(45px);
+            }
+
+            @include bp(escritorio){
+                font-size: rem(46px);
+            }
+
+        }
+
+        form {
+
+            @include bp(tablet){
+                grid-template-columns: 40% 60%;
+
+                div{
+                    &:nth-of-type(3){
+                        grid-area: 2 / 2 span;
+                    }
+                }
+            }
+
+            button {
+
+                &:hover{
+                    .icon{
+                        color: $text_color;
+                    }
+
+                    .icon.animation{
+                        transform: translateX(5px);
+                    }
+                }
+            
+                .icon {
+                    height: 20px;
+                    width: auto;
+                    transform: translateX(0px);
+                    transition: .2s ease;
+                    color: $background_color;
+                }
+
+                .icon{
+                    transform: translateX(px);
+                }
+            }
+
+        }
+    }
+}

@@ -1,0 +1,44 @@
+.all_notify {
+
+    width: 100%;
+    background-color: $successfull_color;
+    height: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font_subtitles;
+    color: $background_color;
+    text-align: center;
+    font-size: rem(13px);
+    position: sticky;
+    top: 0px;
+    transition: .3s ease;
+    cursor: pointer;
+    overflow: hidden;
+
+    p{
+        margin: 0px auto;
+        height: auto;
+
+        @include bp(tablet){
+            max-width: 500px;
+        }
+
+        @include bp(laptopBIG){
+            max-width: 100%;
+        }
+    }
+
+}
+
+.all_notify.show{
+    height: 60px;
+
+    @include bp(mobileBIG){
+        height: 65px;
+    }
+
+    @include bp(tablet){
+        height: 70px;
+    }
+}

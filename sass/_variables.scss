@@ -1,0 +1,84 @@
+@use 'sass:math';
+
+// Imports Fonts
+@font-face {
+    font-family: helvetica_neue;
+    src: url(../assets/fonts/helvetica_neue.ttc);
+}
+
+@font-face {
+    font-family: helvetica_neue_black_condensed;
+    src: url(../assets/fonts/helvetica_neue_extra_black_condensed.ttf);
+}
+
+@font-face {
+    font-family: helvetica_neue_bold;
+    src: url(../assets/fonts/helvetica_neue_bold.ttf);
+}
+
+@font-face {
+    font-family: helvetica_neue_light;
+    src: url(../assets/fonts/helvetica_neue_ultra_light.ttf);
+}
+
+
+// Colors
+$background_color: #ffffff;
+$text_color: #000000;
+$action_color: #1F67A6;
+$error_color: rgb(246, 43, 43);
+$successfull_color: rgb(46, 192, 46);
+$warning_color: rgb(149, 217, 3);
+
+
+// Fonts
+$font_title: helvetica_neue_black_condensed;
+$font_subtitles: helvetica_neue_bold;
+$font_text: helvetica_neue;
+$font_inputs: helvetica_neue_light;
+
+// Medias Query
+@mixin bp($point) {
+    @if $point == escritorio {
+        @media (min-width: 1600px) { @content; }
+    }
+
+    @else if $point == laptopBIG {
+        @media (min-width: 1220px) { @content; }
+    }
+
+    @else if $point == laptop {
+        @media (min-width: 1100px) { @content; }
+    }
+
+    @else if $point == tabletMD {
+        @media (min-width: 901px)  { @content; }
+    }
+
+    @else if $point == tablet {
+        @media (min-width: 700px)  { @content; }
+    }
+
+    @else if($point == mobileBIG){
+        @media (min-width: 550px)  { @content; }
+    }
+
+    @else if($point == mobileMedium){
+        @media (min-width: 420px)  { @content; }
+    }
+}
+
+// Animation
+@mixin keyframes($name){
+    @keyframes #{$name}{
+        @content;
+    }
+}
+@mixin animate($name, $duration, $type, $loop){
+    animation: $name $duration $type $loop;
+}
+
+// Convert px to rem
+@function rem($pxValue) {
+    @return math.div($pxValue, 16px) * 1rem; 
+} 
