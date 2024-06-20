@@ -8,6 +8,12 @@
 
 /* Pages */
 @import './pages/signin';
+@import './pages/signup';
+@import './pages/protected';
+
+*{
+    scroll-behavior: smooth;
+}
 
 .content-responsive{
     padding: 0px 15px;

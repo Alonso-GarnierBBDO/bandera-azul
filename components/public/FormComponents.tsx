@@ -124,6 +124,7 @@ const FormComponent = forwardRef(({ name, type, placeholder, verify, required, d
                     placeholder=" "
                     onInput={validateInput}
                     disabled={disabled}
+                    autoComplete={name === 'password' ? 'current-password' : name === 'email' ? 'username' : undefined}
                 />
                 <span className="placeholder">{ placeholder }</span>
                 {

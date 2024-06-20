@@ -15,15 +15,21 @@ export async function POST(req: NextRequest){
     const origin = headers().get("origin");
     const email = data.email;
     const password = data.password;
+    const name = data.name;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-            emailRedirectTo: `${origin}/auth/callback`,
+    const { error } = await supabase.auth.signUp(
+        {
+            email,
+            password,
+            options: {
+                emailRedirectTo: `${origin}/auth/callback`,
+                data: {
+                    full_name: name
+                }
+            },
         },
-    });
+    );
 
     if (error) {
         console.log(error);

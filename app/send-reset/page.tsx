@@ -6,29 +6,22 @@ import FooterComponent from "@/components/auth/FooterComponent";
 export default function Login( { searchParams }: { searchParams: { message: string }; } ) {
 
 
-  const signIn = async (formData: FormData) => {
+  const reset = async (formData: FormData) => {
     "use server";
 
     try {
       const email = formData.get("email") as string;
-      const password = formData.get("password") as string;
       const supabase = createClient();
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await supabase.auth.resetPasswordForEmail(email);
 
       if (error) {
-        let message = error.message;
-        
-        if(message == 'Invalid login credentials'){
-          message = 'El usuario no coincide con nuestras credenciales'
-        }
-
-        return { status: false, msg: message };
+        return { status: false, msg: error.message };
       }
 
-      return { status: true, msg: "Autenticación exitosa" };
+      return { status: true, msg: "El correo electrónico para restablecer la contraseña se envió con éxito" };
     } catch (error) {
       console.error("Error en la autenticación:", error);
-      return { status: false, msg: "Error en la autenticación" };
+      return { status: false, msg: "El correo para restablecer la contraseña no se pudo enviar." };
     }
   };
 
@@ -36,12 +29,13 @@ export default function Login( { searchParams }: { searchParams: { message: stri
     <div className="auth sign-in">
       <HeaderComponent/>
       <main className="content-responsive">
-        <h1>Iniciar sesión</h1>
+        <h1>Enviar correo de reseteo</h1>
         <FormComponentLogin
-            formAction={signIn}
+            formAction={reset}
             className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
             pendingText="Signing In..."
           >
+            Sign In
         </FormComponentLogin>
       </main>
       <FooterComponent/>

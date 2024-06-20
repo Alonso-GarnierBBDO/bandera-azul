@@ -15,7 +15,8 @@ const showNotify = (type : NotifyType, message: string) => {
             notify.classList.add('show');
         }
 
-        notify.onclick = () => {
+        notify.onclick = (e) => {
+            e.stopPropagation();
             notify.classList.remove('show');
         }
     }

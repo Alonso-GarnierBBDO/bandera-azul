@@ -17,3 +17,8 @@ export interface FormSignInInterface {
     password: string, 
     repeat_password: string
 }
+
+export interface FormResponseInterface {
+    status: boolean,
+    msg: string;
+}

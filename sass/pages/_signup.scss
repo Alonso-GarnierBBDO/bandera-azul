@@ -1,4 +1,4 @@
-.sign-in{
+.sign-up{
     main {
         max-width: 450px;
         margin: auto;
@@ -51,7 +51,17 @@
 
         form {
 
-            button{
+            @include bp(tablet){
+                grid-template-columns: 40% 60%;
+
+                div{
+                    &:nth-of-type(3){
+                        grid-area: 2 / 2 span;
+                    }
+                }
+            }
+
+            button {
 
                 &:hover{
                     .icon{

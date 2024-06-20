@@ -11,6 +11,18 @@ form {
         flex-flow: column;
         width: 100%;
 
+        label.transparent{
+
+            input{
+                background-color: $background_protected_color;
+            }
+
+            input:not(:placeholder-shown) ~ span.placeholder,
+            input:focus ~ span.placeholder{
+                background-color: $background_protected_color;
+            }
+        }
+
         label {
             position: relative;
             display: flex;
@@ -262,7 +274,47 @@ form {
         }
     }
 
-    button {
+    .group_buttons{
+        display: flex;
+        column-gap: 5px;
+    }
+
+    a {
+        font-family: $font_text;
+        font-size: rem(13px);
+        text-decoration: none;
+
+        @include bp(mobileMedium){
+            font-size: rem(13.5px);
+        }
+
+        @include bp(mobileBIG){
+            font-size: rem(14px);
+        }
+
+        @include bp(tablet){
+            font-size: rem(14.5px);
+        }
+
+        @include bp(tabletMD){
+            font-size: rem(15px);
+        }
+
+        @include bp(laptop){
+            font-size: rem(15.5px);
+        }
+
+        @include bp(laptopBIG){
+            font-size: rem(16px);
+        }
+
+        @include bp(escritorio){
+            font-size: rem(16.5px);
+        }
+    }
+
+    button,
+    .button{
         background-color: $text_color;
         color: $background_color;
         border: none;
@@ -277,6 +329,8 @@ form {
         column-gap: rem(5px);
         transition: .2s ease;
         transform: scale(1);
+        text-decoration: none;
+        text-wrap: nowrap;
 
         &:disabled{
             opacity: 0.7;

@@ -1,0 +1,10 @@
+[
+
+    {
+        "type": "email",
+        "placeholder": "Correo electrónico",
+        "name": "email",
+        "verify": true,
+        "required": true
+    }
+]

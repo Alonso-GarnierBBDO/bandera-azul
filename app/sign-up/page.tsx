@@ -11,6 +11,7 @@ import validateFormHelper from "@/helper/form/validate";
 import dataForm, { clearInput } from "@/helper/form/data";
 import SpinnerLoadingComponent from "@/components/public/SpinnerLoadingComponent";
 import showNotify from '@/helper/notify/show';
+import Link from "next/link";
 
 
 
@@ -53,7 +54,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="auth sign-in">
+        <div className="auth sign-up">
             <HeaderComponent/>
             <main className="content-responsive">
                 <h1>Create una cuenta</h1>
@@ -76,14 +77,19 @@ const SignUp = () => {
                             )
                         })
                     }
-                    <button type="submit" disabled={disabledForm}>
-                        {
-                            disabledForm ? 'Signing up' : 'Sign up'
-                        }
-                        {
-                            disabledForm == true? <SpinnerLoadingComponent/> : <ChevronRightIcon className="icon animation"/>
-                        }
-                    </button>
+                    <section className='group_buttons'>
+                        <button type="submit" disabled={disabledForm}>
+                            {
+                                disabledForm ? 'Registrandose' : 'Registrarse'
+                            }
+                            {
+                                disabledForm == true? <SpinnerLoadingComponent/> : <ChevronRightIcon className="icon animation"/>
+                            }
+                        </button>
+                        <Link href='/login' className='button'>
+                            Iniciar sesión
+                        </Link>
+                    </section>
                 </form>
             </main>
             <FooterComponent/>

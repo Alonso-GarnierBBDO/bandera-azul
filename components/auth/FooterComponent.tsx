@@ -2,11 +2,22 @@
 
 import Image from "next/image";
 import MicrosoftLogin from "@/assets/img/microsoft_logo.png";
+import { createClient } from "@/utils/supabase/client";
 
 const FooterComponent = () => {
 
-    const login_microsoft = () => {
-        alert("Login Microsoft");
+    const login_microsoft = async () => {
+        const supabase = createClient();
+
+        const response = await supabase.auth.signInWithOAuth({
+            provider: 'azure',
+            options: {
+                scopes: 'email'
+            }
+        });
+
+        console.log(response)
+
     }
 
     return (
