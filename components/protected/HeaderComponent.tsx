@@ -16,6 +16,7 @@ const HeaderComponent = ({ updated } : { updated: () => void }) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [id, setID] = useState('');
   const [image, setImage] = useState('');
   const [nameValid, setNameValid] = useState(false);
@@ -108,11 +109,23 @@ const HeaderComponent = ({ updated } : { updated: () => void }) => {
     e.preventDefault();
     setDisabledForm(true);
 
-    const { data, error }  = await supabase.auth.updateUser({
+    let update : { data: { full_name: string}, password?: string  } = {
       data: {
         full_name: name
       },
-    })
+    }
+
+    if(password){
+      update = {
+        data: {
+          full_name: name
+        },
+        password: password
+      }
+    }
+
+    const { data, error }  = await supabase.auth.updateUser(update)
+
 
     if(error){
       showNotify('danger', error.message)
@@ -338,6 +351,21 @@ const HeaderComponent = ({ updated } : { updated: () => void }) => {
                     <span className="placeholder">Correo electrónico</span>
                   </label>
                 </div>
+                    
+                <div>
+                  <label htmlFor="" className="transparent">
+                    <input 
+                      type="password" 
+                      name="" 
+                      id="" 
+                      placeholder=" " 
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <span className="placeholder">Nueva contraseña</span>
+                  </label>
+                </div>
+                
                 <section className='group_buttons'>
                   <button type="submit" className="items_update" disabled={disabledForm}>
                       {

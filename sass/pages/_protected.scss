@@ -21,6 +21,11 @@
             max-width: 1000px;
             margin: auto;
             width: 100%;
+            padding: 0px 20px;
+
+            @include bp(tabletMD){
+              padding: 0px 0px;
+            }
 
             h1{
                 font-family: $font-title;
@@ -337,10 +342,18 @@
                   
                   p{
                     margin-bottom: rem(15px);
+                    display: flex;
+                    flex-flow: row wrap;
+                    row-gap: 15px;
+                    column-gap: 15px;
                   }
 
                   h3{
                     margin-bottom: rem(15px);
+                  }
+
+                  hr{
+                    display: none;
                   }
 
                   ol,
@@ -370,7 +383,39 @@
                     text-decoration: none;
                     text-wrap: nowrap;
                     display: inline-block ;
-                    margin-bottom: 15px;
+                    transition: .2s ease;
+                    scale: 1;
+
+                    &:hover{
+                      background-color: rgb(63, 63, 63);
+                      scale: 1.01;
+                    }
+
+                    &:active{
+                      scale: 0.95;
+                    }
+
+                  }
+
+                  a.enlace{
+                    background-color: transparent;
+                    padding: 0px;
+                    color: rgb(0, 0, 156);
+                  }
+
+                  table{
+                    margin: rem(15px) 0px;
+                    // border: 1px solid black;
+                    width: 100%;
+                    border-collapse: collapse;
+                    text-align: left;
+                    overflow: hidden;
+
+                    th,
+                    td{
+                      border: 1px solid #ddd;
+                      padding: 8px;
+                    }
                   }
 
                 }
@@ -444,3 +489,20 @@
         }
     }
 }
+
+
+.markdown {
+  table {
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 6px 13px;
+    border: 1px solid black;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+} 

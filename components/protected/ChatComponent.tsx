@@ -7,6 +7,8 @@ import OpenAI from "openai";
 import HeaderComponent from "./HeaderComponent";
 import { createClient } from "@/utils/supabase/client";
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from "remark-gfm";
+
 
 
 interface ChatCompletionMessageParam {
@@ -30,10 +32,16 @@ const ChatComponent = () => {
         dangerouslyAllowBrowser: true,
     });
 
-    const [messages, setMessage] = useState<ChatCompletionMessageParam[]>([]);
+    const [messages, setMessage] = useState<ChatCompletionMessageParam[]>([
+        {
+            'role': 'system',
+            'content': '¡Hola! ¿Cómo estás? Estoy aquí para ayudarte a evitar un futuro sombrío. ¿Listo para salvar el mundo un paso a la vez? Aquí tienes algunas opciones para empezar: \n [🌿 Cuidado del agua](url) [♻️ Reciclaje](url) [🌳 Plantación de árboles](url) [🚯 Reducción de residuos](url) \n Elige una y hagamos este mundo un lugar mejor.'
+        }
+    ]);
 
     useEffect(() => {
         actualizarPromps();
+        selectOptions();
     }, [])
 
     const actualizarPromps = () => {
@@ -87,7 +95,9 @@ const ChatComponent = () => {
             {"role": "system", "content": `Tu nombre es ${name}`},
             {"role": "system", "content": `Vives en el año 2060`},
             {"role": "system", "content": `Genera etiquetas Markdown para botones con la clase 'new_prompt' al final de la conversación, ofreciendo sugerencias para posibles temas de discusión. Por ejemplo, un botón podría decir '[Texto del botón](url)', además, al final, indica al usuario que estás sugiriendo posibles temas de conversación.`},
-            {"role": "system", "content": `Genera etiquetas opciones como "Te doy unas opciones para preguntarme acerca de qué podés hacer en el presente para proteger el futuro:" en donde muestre botones como "A) Cuidado del agua", "B) Reciclaje",... la respuesta debe ser en Markdown para botones con la clase 'new_prompt' al final de la conversación.`},
+            {"role": "system", "content": `Genera etiquetas Markdown como opciones por ejemplo: "Te doy unas opciones para preguntarme acerca de qué podés hacer en el presente para proteger el futuro:" en donde muestre botones como "Cuidado del agua", "Reciclaje",... la respuesta debe ser en Markdown para botones al final de la conversación. no lo embuelvas en una lista, solo muestra los botones, no es necesario enumerarlo, los botones pueden ir con iconos agradables, y no repitas nunca las opciones, si ya diste unas opciones cambialas por otras`},
+            {"role": "system", "content": `Además, necesito que generes tablas en etiquetas Markdown, en las cuales sugieras al usuario formas de cuidar el medio ambiente para fomentar hábitos sostenibles. Estas tablas deben ser generadas de vez en cuando, no siempre.`},
+            {"role": "system", "content": `Además, puedes crear enlaces de referencias a articulo u otra informacion`},
         ]
 
         const allMessage : ChatCompletionMessageParam[] = instructions.concat(newMessage);
@@ -116,6 +126,9 @@ const ChatComponent = () => {
                 setMessage([...newMessage]);
                 scrollContainer();
                 newMessage[newMessage.length - 1].content = processResponse;
+                setTimeout(() => {
+                    selectOptions();
+                }, 100)
 
             }
 
@@ -125,19 +138,36 @@ const ChatComponent = () => {
         setDisabled(false);
         setTimeout(() => {
             selectOptions();
-        }, 500)
+        }, 100)
+    }
+
+    function esUrlValida(url: string) {
+        try {
+            new URL(url);
+            return true;
+        } catch (_) {
+            return false;
+        }
     }
 
     const selectOptions = () => {
-        const allLinks : NodeListOf<HTMLElement> = document.querySelectorAll('.messages a');
-        allLinks.forEach(e => {
-            e.onclick = (event) => {
-                event.preventDefault();
-                const text = e.textContent;
-                if(text){
-                    sendQuery(null, text);
+        const allLinks : NodeListOf<HTMLAnchorElement> = document.querySelectorAll('.messages a');
+        allLinks.forEach((e) => {
+
+            const item = e.getAttribute('href');
+            if (item === '#' || item === ' ' || item === '' || item === 'url' || !item || !esUrlValida(item)) {
+                e.onclick = (event) => {
+                    event.preventDefault();
+                    const text = e.textContent;
+                    if(text){
+                        sendQuery(null, text);
+                    }
                 }
+            } else {
+                e.classList.add('enlace');
+                e.setAttribute('target', '_blank');
             }
+
         })
     }
 
@@ -175,7 +205,9 @@ const ChatComponent = () => {
                                     }
                                     <div className="content_message">
                                         {/* <p dangerouslySetInnerHTML={{__html: e.content}}></p> */}
-                                        <ReactMarkdown>{e.content}</ReactMarkdown>
+                                        <ReactMarkdown
+                                            remarkPlugins={[remarkGfm]}
+                                        >{e.content}</ReactMarkdown>
                                     </div>
                                 </div>
                             )
