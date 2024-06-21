@@ -276,16 +276,23 @@
               .message.user{
                 display: flex;
                 justify-content: flex-end;
+
                 .content_message{
                   background-color: $background_protected_color;
                   padding: 15px 25px;
                   border-radius: 25px;
                   width: auto;
-                  max-width: 50%;
+                  max-width: 100%;
+
+                  @include bp(tabletMD){
+                    max-width: 50%;
+                  }
+
                   p{
                     margin-bottom: rem(0px);
                   }
                 }
+
               }
 
               .message{
