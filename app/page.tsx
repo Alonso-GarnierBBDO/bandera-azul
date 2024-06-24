@@ -16,7 +16,7 @@ export default async function Index({params, searchParams} : { params: { slug: s
   };
 
   if(!searchParams?.code){
-    redirect('/login')
+    redirect('/protected')
   }
 
   const isSupabaseConnected = canInitSupabaseClient();
