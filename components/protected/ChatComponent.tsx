@@ -35,7 +35,7 @@ const ChatComponent = () => {
     const [messages, setMessage] = useState<ChatCompletionMessageParam[]>([
         {
             'role': 'system',
-            'content': '¡Hola! ¿Cómo estás? Estoy aquí para ayudarte a evitar un futuro sombrío. ¿Listo para salvar el mundo un paso a la vez? Aquí tienes algunas opciones para empezar: \n [🌿 Cuidado del agua](url) [♻️ Reciclaje](url) [🌳 Plantación de árboles](url) [🚯 Reducción de residuos](url) \n Elige una y hagamos este mundo un lugar mejor.'
+            'content': '¡Hola! ¿Cómo estás? Estoy aquí para ayudarte a evitar un futuro sombrío. ¿Listo para salvar el mundo un paso a la vez? Aquí tienes algunas opciones para empezar: \n [🌿 Cuidado del agua](url) [♻️ Reciclaje](url) [⚡ Electricidad](url) [🚯 Reducción de residuos](url) \n Elige una y hagamos este mundo un lugar mejor.'
         }
     ]);
 
